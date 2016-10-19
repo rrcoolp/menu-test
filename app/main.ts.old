@@ -1,0 +1,23 @@
+import {nativeScriptBootstrap} from "nativescript-angular/application";
+import {HTTP_PROVIDERS} from "@angular/http";
+import {enableProdMode} from '@angular/core';
+import {AppComponent} from "./app.component";
+import {APP_ROUTER_PROVIDERS} from "./app.routes";
+import {app_globals} from "./utils/global-variables";
+import {UserSettings} from "./utils/useful-utils";
+import {CommonUtils} from './utils/product_common_utils';
+import {setStatusBarColors} from "./utils/status-bar-util";
+import {GO_API} from "./shared/go_services/api";
+//import {BasketService} from "./shared/basket/basket.service";
+// UNCOMMENT THIS FOR SIDEDRAWER - 
+import {SIDEDRAWER_PROVIDERS} from "nativescript-telerik-ui/sidedrawer/angular";
+import {LISTVIEW_PROVIDERS} from "nativescript-telerik-ui/listview/angular";
+import {registerElement} from "nativescript-angular/element-registry";
+registerElement("DropDown", () => require("nativescript-drop-down/drop-down").DropDown);
+// registerElement("Slide", () => require("nativescript-slides").Slide);
+// registerElement("SlideContainer", () => require("nativescript-slides").SlideContainer);
+
+
+setStatusBarColors();
+enableProdMode();
+nativeScriptBootstrap(AppComponent, [AppComponent,HTTP_PROVIDERS,app_globals,UserSettings,CommonUtils,GO_API,SIDEDRAWER_PROVIDERS,LISTVIEW_PROVIDERS]);

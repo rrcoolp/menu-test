@@ -1,0 +1,45 @@
+<StackLayout class="outerContainer">
+	<Label class="h1title" text="Shop by Departments" textWrap="true" verticalAlignment="center"></Label>
+	<template [ngIf]="departments.categories">
+		<ScrollView>
+			<Stacklayout class="departmentList">			
+				<Stacklayout *ngFor="let item of departments.categories; let i=index;">
+					<GridLayout columns="5*,*" rows="auto" verticalAlignment="middle" class="listItem" (tap)="onItemTap(item, false)">
+						<StackLayout row="0" col="0" class="ValueContainer" verticalAlignment="middle">
+							<Label [class]="expandCategoryId===item.Id ? 'selected' : ''" [text]="item.Title" horizontalAlignment="left"></Label>
+						</StackLayout>
+						<Label row="0" class="selectionRadio fontello" col="1" [text]="item.hasSubcategories ? ( expandCategoryId===item.Id ? getString('0xf102') : getString('0xf196') ) : getString('0xf105')"
+							verticalAlignment="middle"></Label>
+					</GridLayout>
+					<StackLayout [class]="expandCategoryId===item.Id ? 'selectionList subCategories expand' : 'selectionList subCategories'"
+						[visibility]="expandCategoryId===item.Id ? 'visible' : 'collapsed'">
+						<template [ngIf]="expandCategoryId===item.Id">
+							<Stacklayout *ngFor="let subCategory of item.lstSubMenu_Categories; let j=index;">
+								<GridLayout columns="5*,*" rows="auto" verticalAlignment="middle" class="listItem" (tap)="onItemTap(subCategory, true)">
+									<Label class]="expandSubCategoryId===subCategory.Id ? 'selected' : ''" [text]="subCategory.Title" textWrap="true"></Label>
+									<Label row="0" class="selectionRadio fontello" col="1" [text]="subCategory.SubCategories && subCategory.SubCategories.length>0 ? ( expandSubCategoryId===subCategory.Id ? getString('0xf102') : getString('0xf196') ) : getString('0xf105')"
+										verticalAlignment="middle"></Label>
+								</GridLayout>
+
+								<StackLayout [class]="expandSubCategoryId===subCategory.Id ? 'selectionList subCategories2 expand' : 'selectionList subCategories2'"
+									[visibility]="expandSubCategoryId===subCategory.Id ? 'visible' : 'collapsed'">
+									<Stacklayout *ngFor="let subCategory2 of subCategory.SubCategories; let k=index;">
+										<GridLayout columns="5*,*" rows="auto" verticalAlignment="middle" class="listItem" (tap)="onItemTap(subCategory2, true)">
+											<Label class="valueName" [text]="subCategory2.Title" textWrap="true"></Label>
+											<Label row="0" class="selectionRadio fontello" col="1" [text]="getString('0xf105')" verticalAlignment="middle"></Label>
+										</GridLayout>
+										<Label borderRadius="0" borderWidth="1" borderColor="#ddd" height="1" [visibility]="j < subCategory.SubCategories.length-1 ? 'visible' : 'collapsed'"></Label>
+									</Stacklayout>
+								</StackLayout>
+
+								<Label borderRadius="0" borderWidth="1" borderColor="#ddd" height="1" [visibility]="j < item.lstSubMenu_Categories.length-1 ? 'visible' : 'collapsed'"></Label>
+							</Stacklayout>
+						</template>
+					</StackLayout>
+
+					<Stacklayout borderRadius="0" borderWidth="1" borderColor="#ddd" height="1" [visibility]="i < departments.categories.length-1 ? 'visible' : 'collapsed'"></Stacklayout>
+				</Stacklayout>
+			</Stacklayout>
+		</ScrollView>
+	</template>
+</StackLayout>

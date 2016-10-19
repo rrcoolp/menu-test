@@ -1,0 +1,39 @@
+@charset "UTF-8";
+.outerContainer {
+  border-radius: 5;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+}
+.outerContainer .h1title {
+  margin-bottom: 10px;
+}
+.outerContainer .paddedContent {
+  margin: 10px 0;
+  background-color: #fff;
+}
+.outerContainer .departmentList {
+  border-width: 1;
+  border-color: #ddd;
+  border-radius: 5;
+  background-color: #fff;
+}
+.outerContainer .departmentList .selected {
+  font-family: "OpenSans-Bold";
+  font-size: 16px;
+}
+.outerContainer .departmentList .subCategories {
+  background-color: #f5f5f5;
+}
+.outerContainer .departmentList .subCategories2 {
+  background-color: #f0f0f0;
+}
+.outerContainer .departmentList .listItem {
+  margin: 8px;
+  padding: 3px;
+}
+.outerContainer .selectionRadio {
+  font-size: 25px;
+  color: #EC8501;
+  text-align: right;
+}
